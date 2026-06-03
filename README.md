@@ -1,3 +1,3 @@
 # Emergency-AI
-Multi-agent AI platform for emergency healthcare workflows, integrating OpenAI, Flask, REST APIs, voice interaction, 3D avatars, and clinical decision-support systems.
+An AI-driven multi-agent platform designed for emergency healthcare workflows. It integrates OpenAI models, a Flask-based backend, REST APIs, voice interaction, 3D avatar interfaces, and clinical decision-support systems to assist in time-critical medical scenarios.
 Read the full report on Relazione Emergency-AI.pdf
