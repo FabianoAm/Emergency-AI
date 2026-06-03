@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Emergency AI - Centrale Operativa</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #020617;
+    color: #e2e8f0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: #1e293b;
+    border: 1px solid #334155;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background: #334155;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    padding: 12px;
+    background: #0f172a;
+    border-bottom: 1px solid #334155;
+}
+
+.table td {
+    padding: 14px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.row {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.row:hover {
+    background: #0f172a;
+}
+
+.row.white {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.row.white td {
+    background: #f8fafc;
+    color: #0f172a;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.row.white strong {
+    color: #020617;
+}
+
+.row.white:hover {
+    background: #e2e8f0;
+}
+
+.row.white:hover td {
+    background: #e2e8f0;
+}
+
+.row.white .badge {
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+}
+
+.row.white + tr .summary {
+    color: #cbd5e1;
+}
+
+.row.white + tr td {
+    background: #0f172a;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.neutral { background: #94a3b8; }
+.red { background: #ef4444; }
+.yellow { background: #f59e0b; }
+.green { background: #22c55e; }
+.white { background: #f8fafc; box-shadow: inset 0 0 0 1px #94a3b8; }
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    background: #1e293b;
+}
+
+.summary {
+    color: #94a3b8;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>🚑 Emergency AI - Centrale Operativa</h1>
+
+    <div class="filters">
+        <button class="filter-btn" onclick="filterCases('all')">Tutti</button>
+        <button class="filter-btn" onclick="filterCases('red')">🔴 Critici</button>
+        <button class="filter-btn" onclick="filterCases('yellow')">🟡 Medi</button>
+        <button class="filter-btn" onclick="filterCases('green')">🟢 Stabili</button>
+        <button class="filter-btn" onclick="filterCases('white')">⚪ Minori</button>
+    </div>
+</div>
+
+<table class="table" id="casesTable">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Paziente</th>
+            <th>Età</th>
+            <th>Sintomo</th>
+            <th>Fase</th>
+            <th>Step</th>
+            <th>Priorità</th>
+            <th>Ultimo aggiornamento</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for case in cases %}
+        <tr class="row {{ case.severity_class }}" data-simulation-status="{{ case.raw_simulation_status }}" onclick="goToCase('{{ case.case_id }}')">
+
+            <td>
+                <div class="dot {{ case.severity_class }}"></div>
+            </td>
+
+            <td><strong>{{ case.patient_name }}</strong></td>
+            <td>{{ case.age }}</td>
+            <td>{{ case.main_symptom }}</td>
+
+            <td>
+                <span class="badge">{{ case.phase }}</span>
+            </td>
+
+            <td>
+                <span class="badge">{{ case.current_step }}</span>
+            </td>
+
+            <td>{{ case.display_priority }}</td>
+
+            <td>
+                {{ case.updated_at if case.updated_at else '-' }}
+            </td>
+
+        </tr>
+
+        <tr>
+            <td></td>
+            <td colspan="7" class="summary">
+                {{ case.summary }}
+            </td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+<script>
+function goToCase(id) {
+    window.location.href = "/dashboard/" + id;
+}
+
+function filterCases(type) {
+    const rows = document.querySelectorAll(".row");
+
+    rows.forEach(row => {
+        if (type === "all") {
+            row.style.display = "";
+        } else {
+            if (row.classList.contains(type)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    });
+}
+
+const caseRows = document.querySelectorAll(".row");
+const hasRunningCases = Array.from(caseRows).some(
+    row => row.dataset.simulationStatus === "running"
+);
+
+if (hasRunningCases) {
+    setInterval(() => {
+        window.location.reload();
+    }, 4000);
+}
+</script>
+
+</body>
+</html>

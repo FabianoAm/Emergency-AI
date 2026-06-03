@@ -1,0 +1,646 @@
+{
+  "CASE-DAE5D4E6": {
+    "case_id": "CASE-DAE5D4E6",
+    "created_at": "2026-04-22T09:20:44.847472",
+    "updated_at": "2026-04-28T13:17:06.311676",
+    "phase": "hospital",
+    "current_step": "completed",
+    "raw_input": {
+      "patient_identification": {
+        "name": "Giovanni Verdi",
+        "age": 72,
+        "sex": "M",
+        "patient_id": "AMB-2026-01001"
+      },
+      "operator_input": {
+        "main_symptom": "dolore toracico",
+        "symptom_onset": "2026-04-09T10:00:00",
+        "known_conditions": [
+          "ipertensione"
+        ],
+        "allergies": [
+          "nessuna nota"
+        ],
+        "chronic_medications": [
+          "ramipril"
+        ]
+      },
+      "real_time_vitals": {
+        "blood_pressure_mmHg": "85/55",
+        "heart_rate_bpm": 128,
+        "spo2_percent": 87
+      }
+    },
+    "clara_output": {
+      "agent": "CLARA",
+      "patient_record": {
+        "case_id": "CASE-DAE5D4E6",
+        "patient_identification": {
+          "name": "Giovanni Verdi",
+          "age": 72,
+          "sex": "M",
+          "patient_id": "AMB-2026-01001"
+        },
+        "main_complaint": {
+          "main_symptom": "dolore toracico",
+          "symptom_onset": "2026-04-09T10:00:00"
+        },
+        "medical_history": {
+          "known_conditions": [
+            "ipertensione"
+          ],
+          "allergies": [
+            "nessuna nota"
+          ],
+          "chronic_medications": [
+            "ramipril"
+          ]
+        }
+      },
+      "live_vitals": {
+        "blood_pressure_mmHg": "85/55",
+        "heart_rate_bpm": 128,
+        "spo2_percent": 87
+      },
+      "early_anomaly_detection": [
+        "ipotensione",
+        "tachicardia",
+        "ipossiemia"
+      ],
+      "clinical_status": {
+        "phase": "pre_hospital"
+      },
+      "dashboard_payload": {
+        "alert": "Anomalie cliniche rilevate: ipotensione, tachicardia, ipossiemia"
+      },
+      "handoff_to": [
+        "ARES",
+        "Dashboard"
+      ]
+    },
+    "ares_output": {
+      "agent": "ARES",
+      "priority_code": "ROSSO",
+      "immediate_risk_level": "alto",
+      "probable_scenarios": [
+        {
+          "condition": "sindrome coronarica acuta",
+          "confidence": 0.8
+        },
+        {
+          "condition": "shock ipovolemico",
+          "confidence": 0.6
+        },
+        {
+          "condition": "insufficienza respiratoria",
+          "confidence": 0.7
+        }
+      ],
+      "recommended_actions": [
+        "Monitorare continuamente i parametri vitali",
+        "Somministrare ossigeno ad alto flusso",
+        "Considerare la somministrazione di fluidi per via endovenosa",
+        "Terapia antitrombotica se indicato"
+      ],
+      "handoff_to": [
+        "VITA",
+        "ATHENA"
+      ]
+    },
+    "vita_pre_output": {
+      "agent": "VITA",
+      "phase": "prima_diagnosi",
+      "dashboard_summary": "Anomalie cliniche rilevate: ipotensione, tachicardia, ipossiemia.",
+      "operative_explanation": "Il paziente Giovanni Verdi, 72 anni, è stato portato all'attenzione con un dolore toracico. Presenta ipotensione (85/55 mmHg), tachicardia (128 bpm) e ipossiemia (SpO2 al 87%). Le condizoni probabili includono sindrome coronarica acuta, shock ipovolemico e insufficienza respiratoria. Si raccomanda di monitorare continuamente i parametri vitali, somministrare ossigeno ad alto flusso, considerare la somministrazione di fluidi per via endovenosa e una terapia antitrombotica se indicato.",
+      "clinical_comment": "Data la combinazione di sintomi e segni vitali instabili, il rischio immediato è alto. L'intervento rapido e il monitoraggio continuo sono essenziali."
+    },
+    "hospital_input": {
+      "advanced_ecg": "sopraslivellamento ST in derivazioni anteriori",
+      "blood_gas": "ipossiemia lieve",
+      "cbc": "nella norma",
+      "reports": [
+        "quadro compatibile con STEMI"
+      ],
+      "troponin": "elevata"
+    },
+    "athena_output": {
+      "agent": "ATHENA",
+      "primary_hypothesis": "sindrome coronarica acuta",
+      "confidence": 0.8,
+      "supporting_evidence": [
+        "dolore toracico",
+        "sopraslivellamento ST in derivazioni anteriori",
+        "troponina elevata",
+        "ipotensione",
+        "tachicardia",
+        "ipossiemia"
+      ],
+      "differential_diagnosis": [
+        {
+          "condition": "shock ipovolemico",
+          "confidence": 0.6
+        },
+        {
+          "condition": "insufficienza respiratoria",
+          "confidence": 0.7
+        }
+      ],
+      "recommended_care_path": [
+        "Monitorare continuamente i parametri vitali",
+        "Somministrare ossigeno ad alto flusso",
+        "Considerare la somministrazione di fluidi per via endovenosa",
+        "Terapia antitrombotica se indicato"
+      ]
+    },
+    "vita_final_output": {
+      "agent": "VITA",
+      "phase": "seconda_diagnosi",
+      "dashboard_summary": "Il paziente Giovanni Verdi presenta dolore toracico con sopraslivellamento ST in derivazioni anteriori, troponina elevata, ipotensione, tachicardia e ipossiemia. Rischio immediato alto con priorità ROSSO.",
+      "operative_explanation": "Le condizioni principali includono sindrome coronarica acuta come ipotesi primaria supportata da evidenze cliniche. Le azioni raccomandate includono il monitoraggio continuo dei parametri vitali, somministrazione di ossigeno ad alto flusso, considerazione della somministrazione di fluidi per via endovenosa e terapia antitrombotica se indicato.",
+      "clinical_comment": "Quadro clinico compatibile con STEMI con necessità di intervento immediato per stabilizzare il paziente. Monitoraggio continuo e intervento ospedaliero urgente raccomandati."
+    },
+    "demo_key": "demo_rosso",
+    "path_type": "full",
+    "simulation_status": "completed",
+    "timeline": {
+      "created_at": "2026-04-22T09:20:44.847472",
+      "clara_at": "2026-04-22T09:22:44.847472",
+      "ares_at": "2026-04-22T09:26:44.847472",
+      "vita_pre_at": "2026-04-22T09:34:44.847472",
+      "hospital_at": "2026-04-22T09:58:44.847472",
+      "athena_at": "2026-04-22T10:12:44.847472",
+      "vita_final_at": "2026-04-22T10:27:44.847472"
+    },
+    "process_started": true,
+    "manual_priority": "ROSSO",
+    "schema_version": 2
+  },
+  "CASE-C900E23F": {
+    "case_id": "CASE-C900E23F",
+    "created_at": "2026-04-22T09:20:44.849212",
+    "updated_at": "2026-05-04T09:42:24.484448",
+    "phase": "hospital",
+    "current_step": "completed",
+    "raw_input": {
+      "patient_identification": {
+        "name": "Marco Bianchi",
+        "age": 55,
+        "sex": "M",
+        "patient_id": "AMB-2026-01003"
+      },
+      "operator_input": {
+        "main_symptom": "dispnea",
+        "symptom_onset": "2026-04-09T10:15:00",
+        "known_conditions": [
+          "asma"
+        ],
+        "allergies": [
+          "nessuna"
+        ],
+        "chronic_medications": [
+          "salbutamolo"
+        ]
+      },
+      "real_time_vitals": {
+        "blood_pressure_mmHg": "110/70",
+        "heart_rate_bpm": 105,
+        "spo2_percent": 93
+      }
+    },
+    "clara_output": {
+      "agent": "CLARA",
+      "patient_record": {
+        "case_id": "CASE-C900E23F",
+        "patient_identification": {
+          "name": "Marco Bianchi",
+          "age": 55,
+          "sex": "M",
+          "patient_id": "AMB-2026-01003"
+        },
+        "main_complaint": {
+          "main_symptom": "dispnea",
+          "symptom_onset": "2026-04-09T10:15:00"
+        },
+        "medical_history": {
+          "known_conditions": [
+            "asma"
+          ],
+          "allergies": [
+            "nessuna"
+          ],
+          "chronic_medications": [
+            "salbutamolo"
+          ]
+        }
+      },
+      "live_vitals": {
+        "blood_pressure_mmHg": "110/70",
+        "heart_rate_bpm": 105,
+        "spo2_percent": 93
+      },
+      "early_anomaly_detection": [],
+      "clinical_status": {
+        "phase": "pre_hospital"
+      },
+      "dashboard_payload": {
+        "alert": ""
+      },
+      "handoff_to": [
+        "ARES",
+        "Dashboard"
+      ]
+    },
+    "ares_output": {
+      "agent": "ARES",
+      "priority_code": "Giallo",
+      "immediate_risk_level": "Moderato",
+      "probable_scenarios": [
+        {
+          "condition": "Episodio acuto di asma",
+          "confidence": 0.8
+        },
+        {
+          "condition": "Insufficienza respiratoria lieve",
+          "confidence": 0.6
+        }
+      ],
+      "recommended_actions": [
+        "Somministrare broncodilatatore",
+        "Monitorare saturazione ossigeno"
+      ],
+      "handoff_to": [
+        "VITA",
+        "ATHENA"
+      ]
+    },
+    "vita_pre_output": {
+      "agent": "VITA",
+      "phase": "prima_diagnosi",
+      "dashboard_summary": "Il paziente, Marco Bianchi, di 55 anni, presenta un episodio di dispnea con saturazione di ossigeno al 93% e frequenza cardiaca di 105 bpm. La pressione arteriosa è 110/70 mmHg.",
+      "operative_explanation": "Si sospetta un episodio acuto di asma con una probabilità dell'80%, oppure un'insufficienza respiratoria lieve con una probabilità del 60%. Si consiglia di somministrare un broncodilatatore e monitorare la saturazione di ossigeno.",
+      "clinical_comment": "Considerato il livello di rischio moderato, è importante intervenire prontamente per migliorare la respirazione del paziente. La storia medica di asma e l'uso di salbutamolo sono rilevanti per il trattamento in corso."
+    },
+    "hospital_input": {
+      "advanced_ecg": "senza segni di ischemia acuta",
+      "blood_gas": "lieve ipossiemia",
+      "cbc": "nella norma",
+      "reports": [
+        "quadro compatibile con riacutizzazione respiratoria"
+      ],
+      "troponin": "negativa"
+    },
+    "athena_output": {
+      "agent": "ATHENA",
+      "primary_hypothesis": "Episodio acuto di asma",
+      "confidence": 0.8,
+      "supporting_evidence": [
+        "Dispnea acuta",
+        "Saturazione ossigeno al 93%",
+        "Storia di asma",
+        "Uso cronico di salbutamolo",
+        "Quadro compatibile con riacutizzazione respiratoria",
+        "Lieve ipossiemia"
+      ],
+      "differential_diagnosis": [
+        {
+          "condition": "Insufficienza respiratoria lieve",
+          "confidence": 0.6
+        }
+      ],
+      "recommended_care_path": [
+        "Somministrare broncodilatatore",
+        "Monitorare saturazione ossigeno"
+      ]
+    },
+    "vita_final_output": {
+      "agent": "VITA",
+      "phase": "seconda_diagnosi",
+      "dashboard_summary": "Paziente maschio, 55 anni, presenta dispnea acuta con saturazione di ossigeno al 93%. Storia di asma e uso cronico di salbutamolo. Quadro clinico compatibile con riacutizzazione respiratoria e lieve ipossiemia. Pressione sanguigna 110/70 mmHg, frequenza cardiaca 105 bpm.",
+      "operative_explanation": "Il paziente mostra segni di episodio acuto di asma con rischio moderato. Si consiglia di somministrare broncodilatatore e monitorare la saturazione di ossigeno. L'ECG avanzato non evidenzia segni di ischemia acuta.",
+      "clinical_comment": "I dati ospedalieri sostengono la diagnosi di riacutizzazione dell'asma con quadro respiratorio compromesso. Si raccomanda attenzione alla lieve ipossiemia riscontrata nell'analisi dei gas nel sangue."
+    },
+    "demo_key": "demo_giallo",
+    "path_type": "full",
+    "simulation_status": "completed",
+    "timeline": {
+      "created_at": "2026-04-22T09:20:44.849212",
+      "clara_at": "2026-04-22T09:22:44.849212",
+      "ares_at": "2026-04-22T09:26:44.849212",
+      "vita_pre_at": "2026-04-22T09:34:44.849212",
+      "hospital_at": "2026-04-22T09:58:44.849212",
+      "athena_at": "2026-04-22T10:12:44.849212",
+      "vita_final_at": "2026-04-22T10:27:44.849212"
+    },
+    "process_started": true,
+    "manual_priority": "GIALLO",
+    "schema_version": 2
+  },
+  "CASE-54A54DE4": {
+    "case_id": "CASE-54A54DE4",
+    "created_at": "2026-04-22T09:20:44.849921",
+    "updated_at": "2026-05-04T09:45:09.449008",
+    "phase": "hospital",
+    "current_step": "completed",
+    "raw_input": {
+      "patient_identification": {
+        "name": "Luca Rossi",
+        "age": 34,
+        "sex": "M",
+        "patient_id": "AMB-2026-01007"
+      },
+      "operator_input": {
+        "main_symptom": "frattura scomposta avambraccio destro",
+        "symptom_onset": "2026-04-09T09:30:00",
+        "known_conditions": [],
+        "allergies": [
+          "nessuna"
+        ],
+        "chronic_medications": []
+      },
+      "real_time_vitals": {
+        "blood_pressure_mmHg": "125/80",
+        "heart_rate_bpm": 96,
+        "spo2_percent": 99
+      }
+    },
+    "clara_output": {
+      "agent": "CLARA",
+      "patient_record": {
+        "case_id": "CASE-54A54DE4",
+        "patient_identification": {
+          "name": "Luca Rossi",
+          "age": 34,
+          "sex": "M",
+          "patient_id": "AMB-2026-01007"
+        },
+        "main_complaint": {
+          "main_symptom": "frattura scomposta avambraccio destro",
+          "symptom_onset": "2026-04-09T09:30:00"
+        },
+        "medical_history": {
+          "known_conditions": [],
+          "allergies": [
+            "nessuna"
+          ],
+          "chronic_medications": []
+        }
+      },
+      "live_vitals": {
+        "blood_pressure_mmHg": "125/80",
+        "heart_rate_bpm": 96,
+        "spo2_percent": 99
+      },
+      "early_anomaly_detection": [],
+      "clinical_status": {
+        "phase": "pre_hospital"
+      },
+      "dashboard_payload": {
+        "alert": "..."
+      },
+      "handoff_to": [
+        "ARES",
+        "Dashboard"
+      ]
+    },
+    "ares_output": {
+      "agent": "ARES",
+      "priority_code": "verde",
+      "immediate_risk_level": "Moderato",
+      "probable_scenarios": [
+        {
+          "condition": "frattura scomposta avambraccio destro",
+          "confidence": 0.9
+        }
+      ],
+      "recommended_actions": [
+        "Immobilizzare l'arto",
+        "Somministrare analgesici",
+        "Preparare per il trasporto ospedaliero"
+      ],
+      "handoff_to": [
+        "VITA",
+        "ATHENA"
+      ]
+    },
+    "vita_pre_output": {
+      "agent": "VITA",
+      "phase": "prima_diagnosi",
+      "dashboard_summary": "Luca Rossi, maschio di 34 anni, presenta una frattura scomposta all'avambraccio destro con pressione sanguigna di 125/80 mmHg, frequenza cardiaca di 96 bpm e saturazione O2 al 99%.",
+      "operative_explanation": "Il paziente ha una probabile frattura scomposta all'avambraccio destro. È consigliato immobilizzare l'arto, somministrare analgesici e preparare per il trasporto ospedaliero.",
+      "clinical_comment": "Rischio immediato moderato. Codice di priorità verde. Nessuna allergia conosciuta."
+    },
+    "hospital_input": {
+      "x_ray": "frattura scomposta diafisaria radio-ulna destra",
+      "pain_assessment": "dolore severo locale senza deficit neurovascolare",
+      "cbc": "nella norma",
+      "reports": [
+        "trauma ortopedico stabile, indicazione a riduzione e immobilizzazione"
+      ],
+      "orthopedic_note": "arto perfuso, sensibilità conservata, necessario trattamento in ambiente ospedaliero"
+    },
+    "athena_output": {
+      "agent": "ATHENA",
+      "primary_hypothesis": "Frattura scomposta avambraccio destro",
+      "confidence": 0.9,
+      "supporting_evidence": [
+        "ARES output: frattura scomposta avambraccio destro con fiducia 0.9",
+        "CLARA output: sintomi principali sono frattura scomposta avambraccio destro",
+        "Referto ospedaliero: frattura scomposta diafisaria radio-ulna destra",
+        "Nota ortopedica: arto perfuso, sensibilità conservata",
+        "Valutazione del dolore: dolore severo locale"
+      ],
+      "differential_diagnosis": [],
+      "recommended_care_path": [
+        "Immobilizzare l'arto",
+        "Somministrare analgesici",
+        "Preparare per il trasporto ospedaliero",
+        "Riduzione e immobilizzazione in ambiente ospedaliero"
+      ]
+    },
+    "vita_final_output": {
+      "agent": "VITA",
+      "phase": "seconda_diagnosi",
+      "dashboard_summary": "Paziente di 34 anni, Luca Rossi, presenta una frattura scomposta dell'avambraccio destro. I parametri vitali sono stabili: pressione arteriosa 125/80 mmHg, frequenza cardiaca 96 bpm, SpO2 al 99%. Non ci sono allergie note né condizioni mediche croniche. Si raccomanda l'immobilizzazione dell'arto e la somministrazione di analgesici, in attesa di riduzione e immobilizzazione in ambiente ospedaliero.",
+      "operative_explanation": "L'intervento pre-ospedaliero si è concentrato sulla gestione del dolore e sulla preparazione del paziente per il trasporto ospedaliero in condizioni stabili. Si è proceduto all'immobilizzazione dell'arto e alla somministrazione di analgesici per il dolore severo locale. In ospedale si prevede la riduzione e immobilizzazione delle fratture del radio e dell'ulna destra.",
+      "clinical_comment": "La diagnosi iniziale di frattura scomposta dell'avambraccio destro è stata confermata dai dati ospedalieri, inclusi raggi X e note ortopediche. Il trattamento prevede una gestione conservativa iniziale, seguita da intervento ortopedico in ambiente controllato per garantire la riduzione della frattura e mantenere la perfusione e la sensibilità dell'arto."
+    },
+    "demo_key": "demo_verde",
+    "path_type": "full",
+    "simulation_status": "completed",
+    "timeline": {
+      "created_at": "2026-04-22T09:20:44.849921",
+      "clara_at": "2026-04-22T09:22:44.849921",
+      "ares_at": "2026-04-22T09:26:44.849921",
+      "vita_pre_at": "2026-04-22T09:34:44.849921",
+      "hospital_at": "2026-04-22T09:58:44.849921",
+      "athena_at": "2026-04-22T10:12:44.849921",
+      "vita_final_at": "2026-04-22T10:27:44.849921"
+    },
+    "process_started": true,
+    "manual_priority": "VERDE",
+    "schema_version": 2
+  },
+  "CASE-67F81850": {
+    "case_id": "CASE-67F81850",
+    "created_at": "2026-04-24T13:47:42.938695",
+    "updated_at": "2026-05-04T09:44:21.477460",
+    "phase": "pre_hospital",
+    "current_step": "completed",
+    "raw_input": {
+      "patient_identification": {
+        "name": "Andrea Neri",
+        "age": 24,
+        "sex": "M",
+        "patient_id": "AMB-2026-01011"
+      },
+      "operator_input": {
+        "main_symptom": "lieve contusione caviglia dopo distorsione",
+        "symptom_onset": "2026-04-09T11:10:00",
+        "known_conditions": [],
+        "allergies": [
+          "nessuna"
+        ],
+        "chronic_medications": []
+      },
+      "real_time_vitals": {
+        "blood_pressure_mmHg": "122/78",
+        "heart_rate_bpm": 72,
+        "spo2_percent": 99
+      }
+    },
+    "clara_output": {
+      "agent": "CLARA",
+      "patient_record": {
+        "case_id": "CASE-67F81850",
+        "patient_identification": {
+          "name": "Andrea Neri",
+          "age": 24,
+          "sex": "M",
+          "patient_id": "AMB-2026-01011"
+        },
+        "main_complaint": {
+          "main_symptom": "lieve contusione caviglia dopo distorsione",
+          "symptom_onset": "2026-04-09T11:10:00"
+        },
+        "medical_history": {
+          "known_conditions": [],
+          "allergies": [
+            "nessuna"
+          ],
+          "chronic_medications": []
+        }
+      },
+      "live_vitals": {
+        "blood_pressure_mmHg": "122/78",
+        "heart_rate_bpm": 72,
+        "spo2_percent": 99
+      },
+      "early_anomaly_detection": [],
+      "clinical_status": {
+        "phase": "pre_hospital"
+      },
+      "dashboard_payload": {
+        "alert": "nessuna anomalia rilevata"
+      },
+      "handoff_to": [
+        "ARES",
+        "Dashboard"
+      ]
+    },
+    "ares_output": {
+      "agent": "ARES",
+      "priority_code": "bianco",
+      "immediate_risk_level": "basso",
+      "probable_scenarios": [
+        {
+          "condition": "contusione lieve caviglia",
+          "confidence": 0.9
+        }
+      ],
+      "recommended_actions": [
+        "applicare ghiaccio localmente",
+        "tenere sollevata la caviglia",
+        "monitorare per peggioramento"
+      ],
+      "handoff_to": [
+        "VITA",
+        "ATHENA"
+      ]
+    },
+    "vita_pre_output": {
+      "agent": "VITA",
+      "phase": "prima_diagnosi",
+      "dashboard_summary": "Paziente Andrea Neri, 24 anni, senza allergie note e nessuna condizione medica pregressa rilevante, presenta una lieve contusione alla caviglia in seguito a una distorsione.",
+      "operative_explanation": "Il livello di rischio immediato è basso. Si consiglia di applicare ghiaccio localmente, tenere la caviglia sollevata e monitorare per peggioramenti.",
+      "clinical_comment": "I segni vitali sono stabili: pressione arteriosa 122/78 mmHg, frequenza cardiaca 72 bpm, saturazione di ossigeno 99%. Non sono state rilevate anomalie."
+    },
+    "hospital_input": null,
+    "athena_output": null,
+    "vita_final_output": null,
+    "demo_key": "demo_bianco",
+    "path_type": "pre_hospital",
+    "simulation_status": "completed",
+    "process_started": true,
+    "manual_priority": "BIANCO",
+    "schema_version": 2,
+    "timeline": {
+      "created_at": "2026-04-24T13:47:42.938695",
+      "clara_at": "2026-04-24T13:49:42.938695",
+      "ares_at": "2026-04-24T13:53:42.938695",
+      "vita_pre_at": "2026-04-24T14:01:42.938695",
+      "hospital_at": null,
+      "athena_at": null,
+      "vita_final_at": null
+    }
+  },
+  "CASE-AF4C0E7D": {
+    "case_id": "CASE-AF4C0E7D",
+    "created_at": "2026-04-28T08:55:08.005200",
+    "updated_at": "2026-04-28T13:08:08.947048",
+    "phase": "pre_hospital",
+    "current_step": "clara_pending",
+    "raw_input": {
+      "patient_identification": {
+        "name": "Massimo Valio",
+        "age": 22,
+        "sex": "M",
+        "patient_id": "AMB-2026-01013"
+      },
+      "operator_input": {
+        "main_symptom": "pneumotorace",
+        "symptom_onset": "2026-04-09T10:40:00",
+        "known_conditions": [],
+        "allergies": [
+          "nessuna"
+        ],
+        "chronic_medications": []
+      },
+      "real_time_vitals": {
+        "blood_pressure_mmHg": "92/60",
+        "heart_rate_bpm": 132,
+        "spo2_percent": 86
+      }
+    },
+    "clara_output": null,
+    "ares_output": null,
+    "vita_pre_output": null,
+    "hospital_input": null,
+    "athena_output": null,
+    "vita_final_output": null,
+    "demo_key": "demo_rosso_pneumotorace",
+    "path_type": "full",
+    "simulation_status": "idle",
+    "process_started": false,
+    "manual_priority": null,
+    "schema_version": 2,
+    "timeline": {
+      "created_at": "2026-04-28T08:55:08.005200",
+      "clara_at": null,
+      "ares_at": null,
+      "vita_pre_at": null,
+      "hospital_at": null,
+      "athena_at": null,
+      "vita_final_at": null
+    }
+  }
+}
